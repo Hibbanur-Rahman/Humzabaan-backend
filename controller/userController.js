@@ -27,7 +27,7 @@ const Login = async(req, res) => {
         })
     }
 
-    const token=getToken(User);
+    const token=await getToken(User);
 
     return res.status(httpStatusCode.OK).json({
       success: true,
