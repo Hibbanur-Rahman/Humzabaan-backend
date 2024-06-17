@@ -74,7 +74,7 @@ const Register = async(req, res) => {
     }
     return res.status(httpStatusCode.OK).json({
       success: true,
-      message: "Login Successfully",
+      message: "Registered Successfully",
       data: User,
     });
   } catch (error) {
