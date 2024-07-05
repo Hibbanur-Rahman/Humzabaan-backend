@@ -1,5 +1,5 @@
 const httpStatusCode = require("../constants/httpStatusCode");
-const { testimonialModel } = require("../models/testimonialModal");
+const { testimonialModel } = require("../models/testimonialModel");
 const { validationResult } = require("express-validator");
 
 const UpdateTestimonial1 = async (req, res) => {
