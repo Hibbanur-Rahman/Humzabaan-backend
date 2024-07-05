@@ -5,6 +5,7 @@ const bcrypt=require('bcrypt');
 const Login = async(req, res) => {
   try {
     const {email,password}=req.body;
+    console.log(email,password)
     if(!email || !password){
         return res.status(httpStatusCode.BAD_REQUEST).json({
             sucess:false,
@@ -29,6 +30,7 @@ const Login = async(req, res) => {
 
     const token=await getToken(User);
 
+    console.log(User);
     return res.status(httpStatusCode.OK).json({
       success: true,
       message: "Login Successfully",
