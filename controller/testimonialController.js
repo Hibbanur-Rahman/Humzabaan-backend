@@ -11,13 +11,14 @@ const UpdateTestimonial1 = async (req, res) => {
         errors: errors.array(),
       });
     }
-    const { name, description, image, rating } = req.body;
+    let { name, description, image, rating } = req.body;
     if (!name || !description || !image || !rating) {
       return res.status(httpStatusCode.BAD_REQUEST).json({
         success: false,
         message: "Please fill all the fields",
       });
     }
+    image = req.file.filename;
     const isExistingTestimonial = await testimonialModel.findOne({
       testimonialNumber: 1,
     });
@@ -32,14 +33,15 @@ const UpdateTestimonial1 = async (req, res) => {
           rating,
         }
       );
+    } else {
+      testimonial = await testimonialModel.create({
+        testimonialNumber: 1,
+        name,
+        description,
+        image,
+        rating,
+      });
     }
-    testimonial = await testimonialModel.create({
-      testimonialNumber: 1,
-      name,
-      description,
-      image,
-      rating,
-    });
 
     if (!testimonial) {
       return res.status(httpStatusCode.NOT_FOUND).json({
@@ -70,13 +72,14 @@ const UpdateTestimonial2 = async (req, res) => {
         errors: errors.array(),
       });
     }
-    const { name, description, image, rating } = req.body;
+    let { name, description, image, rating } = req.body;
     if (!name || !description || !image || !rating) {
       return res.status(httpStatusCode.BAD_REQUEST).json({
         success: false,
         message: "Please fill all the fields",
       });
     }
+    image = req.file.filename;
     const isExistingTestimonial = await testimonialModel.findOne({
       testimonialNumber: 2,
     });
@@ -92,14 +95,15 @@ const UpdateTestimonial2 = async (req, res) => {
         }
       );
     }
-    testimonial = await testimonialModel.create({
-      testimonialNumber: 2,
-      name,
-      description,
-      image,
-      rating,
-    });
-
+    else {
+      testimonial = await testimonialModel.create({
+        testimonialNumber: 2,
+        name,
+        description,
+        image,
+        rating,
+      });
+    }
     if (!testimonial) {
       return res.status(httpStatusCode.NOT_FOUND).json({
         success: false,
@@ -129,13 +133,15 @@ const UpdateTestimonial3 = async (req, res) => {
         errors: errors.array(),
       });
     }
-    const { name, description, image, rating } = req.body;
+    let { name, description, image, rating } = req.body;
     if (!name || !description || !image || !rating) {
       return res.status(httpStatusCode.BAD_REQUEST).json({
         success: false,
         message: "Please fill all the fields",
       });
     }
+    image = req.file.filename;
+
     const isExistingTestimonial = await testimonialModel.findOne({
       testimonialNumber: 3,
     });
@@ -151,14 +157,15 @@ const UpdateTestimonial3 = async (req, res) => {
         }
       );
     }
-    testimonial = await testimonialModel.create({
-      testimonialNumber: 3,
-      name,
-      description,
-      image,
-      rating,
-    });
-
+    else {
+      testimonial = await testimonialModel.create({
+        testimonialNumber: 3,
+        name,
+        description,
+        image,
+        rating,
+      });
+    }
     if (!testimonial) {
       return res.status(httpStatusCode.NOT_FOUND).json({
         success: false,
