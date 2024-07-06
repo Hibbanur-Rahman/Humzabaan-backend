@@ -2,42 +2,42 @@ const { validationResult } = require("express-validator");
 const httpStatusCode = require("../constants/httpStatusCode");
 const MessageModel = require("../models/messageModa]el");
 
-const CreateMessage =async (req, res) => {
+const CreateMessage = async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(httpStatusCode.BAD_REQUEST).json({ 
-        success:false,
-        errors: errors.array()
-     });
+      return res.status(httpStatusCode.BAD_REQUEST).json({
+        success: false,
+        errors: errors.array(),
+      });
     }
 
-    const {name,email,message}=req.body;
-    if( !name || !email || !message){
-        return res.status(httpStatusCode.BAD_REQUEST).json({
-            success:false,
-            message:"fill the all field"
-        })
+    const { name, email, message } = req.body;
+    if (!name || !email || !message) {
+      return res.status(httpStatusCode.BAD_REQUEST).json({
+        success: false,
+        message: "fill the all field",
+      });
     }
 
-    const messageSend=await MessageModel.create({
-        name,
-        email,
-        message
-    })
+    const messageSend = await MessageModel.create({
+      name,
+      email,
+      message,
+    });
 
-    if(!messageSend){
-        return res.status(httpStatusCode.BAD_REQUEST).json({
-            success:false,
-            message:"something went wrong in messageModel"
-        });
+    if (!messageSend) {
+      return res.status(httpStatusCode.BAD_REQUEST).json({
+        success: false,
+        message: "something went wrong in messageModel",
+      });
     }
 
     return res.status(httpStatusCode.CREATED).json({
-        success:true,
-        message:"Message send successfully",
-        data:messageSend
-    })
+      success: true,
+      message: "Message send successfully",
+      data: messageSend,
+    });
   } catch (error) {
     console.log("error in message", error);
     return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json({
@@ -48,7 +48,32 @@ const CreateMessage =async (req, res) => {
   }
 };
 
+const ViewMessages = async(req, res) => {
+  try {
+    const messages= await MessageModel.find();
+    if(!messages){
+      return res.status(httpStatusCode.BAD_REQUEST).json({
+        success: false,
+        message: "No message found",
+      })
+    }
 
-module.exports={
-    CreateMessage
-}
+    return res.status(httpStatusCode.OK).json({
+      success: true,
+      message:"Messages viewed successfully!",
+      data:messages
+    })
+  } catch (error) {
+    console.log("error in viewing message: ", error);
+    return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "Something went wrong !!",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = {
+  CreateMessage,
+  ViewMessages
+};
