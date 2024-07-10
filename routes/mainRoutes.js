@@ -12,7 +12,7 @@ const {
   CreateMessage,
   ViewMessages,
 } = require("../controller/messageController");
-const { FeatureUpdate } = require("../controller/featuresController");
+const { FeatureUpdate, ViewFeatures } = require("../controller/featuresController");
 
 
 const Router = express.Router();
@@ -39,5 +39,6 @@ Router.post("/send-message-db", CreateMessage);
 Router.post("/view-messages", verifyToken, ViewMessages);
 
 Router.post('/update-feature',verifyTokenNew,FeatureUpdate)
+Router.post('/view-features',verifyToken,ViewFeatures)
 
 module.exports = Router;
