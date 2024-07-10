@@ -7,11 +7,14 @@ const {
   UpdateTestimonial3,
 } = require("../controller/testimonialController");
 const upload = require("../middleware/multerMiddleware");
-const { verifyToken } = require("../middleware/authMiddleware");
+const { verifyToken, verifyTokenNew } = require("../middleware/authMiddleware");
 const {
   CreateMessage,
   ViewMessages,
 } = require("../controller/messageController");
+const { FeatureUpdate } = require("../controller/featuresController");
+
+
 const Router = express.Router();
 
 Router.post("/login", Login);
@@ -31,8 +34,10 @@ Router.post(
   upload.single("profileImage"),
   UpdateTestimonial3
 );
-Router.post("/view-testimonial", verifyToken, ViewTestimonial);
+Router.post("/view-testimonial", ViewTestimonial);
 Router.post("/send-message-db", CreateMessage);
 Router.post("/view-messages", verifyToken, ViewMessages);
+
+Router.post('/update-feature',verifyTokenNew,FeatureUpdate)
 
 module.exports = Router;
