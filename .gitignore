@@ -41,7 +41,7 @@ Thumbs.db
 *.war
 
 
-.env
+*.env
 
 # Large media files
 *.mp4
