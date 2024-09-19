@@ -21,17 +21,19 @@ Router.post("/login", Login);
 Router.post("/register", Register);
 Router.post(
   "/update-testimonial-1",
-  upload.single("profileImage"),
   UpdateTestimonial1
 );
+
+// If you want to delete a file
+// Example: Deleting 'leaderboard/someimage.jpeg' from S3
+// deleteFile('leaderboard/someimage.jpeg');
+
 Router.post(
   "/update-testimonial-2",
-  upload.single("profileImage"),
   UpdateTestimonial2
 );
 Router.post(
   "/update-testimonial-3",
-  upload.single("profileImage"),
   UpdateTestimonial3
 );
 Router.post("/view-testimonial", ViewTestimonial);

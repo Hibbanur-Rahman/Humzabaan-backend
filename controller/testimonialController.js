@@ -18,7 +18,7 @@ const UpdateTestimonial1 = async (req, res) => {
         message: "Please fill all the fields",
       });
     }
-    image = req.file.filename;
+    // image = req.file.filename;
     const isExistingTestimonial = await testimonialModel.findOne({
       testimonialNumber: 1,
     });
@@ -79,7 +79,7 @@ const UpdateTestimonial2 = async (req, res) => {
         message: "Please fill all the fields",
       });
     }
-    image = req.file.filename;
+    // image = req.file.filename;
     const isExistingTestimonial = await testimonialModel.findOne({
       testimonialNumber: 2,
     });
@@ -140,7 +140,7 @@ const UpdateTestimonial3 = async (req, res) => {
         message: "Please fill all the fields",
       });
     }
-    image = req.file.filename;
+    // image = req.file.filename;
 
     const isExistingTestimonial = await testimonialModel.findOne({
       testimonialNumber: 3,
