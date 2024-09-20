@@ -36,11 +36,11 @@ Router.post(
   "/update-testimonial-3",
   UpdateTestimonial3
 );
-Router.post("/view-testimonial", ViewTestimonial);
+Router.get("/view-testimonial", ViewTestimonial);
 Router.post("/send-message-db", CreateMessage);
 Router.post("/view-messages", verifyToken, ViewMessages);
 
 Router.post('/update-feature',verifyTokenNew,FeatureUpdate)
-Router.post('/view-features',verifyToken,ViewFeatures)
+Router.get('/view-features',ViewFeatures);
 
 module.exports = Router;
