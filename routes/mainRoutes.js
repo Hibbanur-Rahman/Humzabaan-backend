@@ -12,35 +12,32 @@ const {
   CreateMessage,
   ViewMessages,
 } = require("../controller/messageController");
-const { FeatureUpdate, ViewFeatures } = require("../controller/featuresController");
-
+const {
+  FeatureUpdate,
+  ViewFeatures,
+} = require("../controller/featuresController");
+const { AddSubscribe } = require("../controller/subscribeController");
+const { AddManageData } = require("../controller/manageData");
 
 const Router = express.Router();
 
 Router.post("/login", Login);
 Router.post("/register", Register);
-Router.post(
-  "/update-testimonial-1",
-  UpdateTestimonial1
-);
+Router.post("/update-testimonial-1", UpdateTestimonial1);
 
 // If you want to delete a file
 // Example: Deleting 'leaderboard/someimage.jpeg' from S3
 // deleteFile('leaderboard/someimage.jpeg');
 
-Router.post(
-  "/update-testimonial-2",
-  UpdateTestimonial2
-);
-Router.post(
-  "/update-testimonial-3",
-  UpdateTestimonial3
-);
+Router.post("/update-testimonial-2", UpdateTestimonial2);
+Router.post("/update-testimonial-3", UpdateTestimonial3);
 Router.get("/view-testimonial", ViewTestimonial);
 Router.post("/send-message-db", CreateMessage);
 Router.post("/view-messages", verifyToken, ViewMessages);
 
-Router.post('/update-feature',verifyTokenNew,FeatureUpdate)
-Router.get('/view-features',ViewFeatures);
+Router.post("/update-feature", verifyTokenNew, FeatureUpdate);
+Router.get("/view-features", ViewFeatures);
 
+Router.post("/subscribe", AddSubscribe);
+Router.post("/manageData",AddManageData);
 module.exports = Router;
